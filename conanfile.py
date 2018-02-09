@@ -21,7 +21,7 @@ class EigenConan(ConanFile):
     default_options = "EIGEN_USE_BLAS=False", "EIGEN_USE_LAPACKE=False", "EIGEN_USE_LAPACKE_STRICT=False"
 
     def source(self):
-        tools.get("{0}/get/{1}.tar.gz".format(self.url, self.version))
+        tools.get("https://bitbucket.org/eigen/eigen/get/{0}.tar.gz".format(self.version))
         os.rename(glob("eigen-eigen-*")[0], "sources")
 
     def package(self):
