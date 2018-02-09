@@ -2,26 +2,21 @@
 
 ![conan-eigen image](/images/conan-eigen.png)
 
-[![Download](https://api.bintray.com/packages/conan-community/conan/eigen%3Aconan/images/download.svg?version=3.3.4%3Astable)](https://bintray.com/conan-community/conan/eigen%3Aconan/3.3.4%3Astable/link)
-[![Build Status](https://travis-ci.org/danimtb/conan-eigen.svg?branch=stable%2F3.3.4)](https://travis-ci.org/danimtb/conan-eigen)
-[![Build status](https://ci.appveyor.com/api/projects/status/jyeh443gn0l0f3bi/branch/stable/3.3.4?svg=true)](https://ci.appveyor.com/project/danimtb/conan-eigen/branch/stable/3.3.4)
 
 [Conan.io](https://conan.io) package for [Eigen](https://bitbucket.org/eigen/eigen) project
-
-The packages generated with this **conanfile** can be found in [Bintray](https://bintray.com/conan-community/conan/eigen%3Aconan).
 
 ## For Users: Use this package
 
 ### Basic setup
 
-    $ conan install eigen/3.3.4@conan/stable
+    $ conan install eigen/3.3.4@camposs/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    eigen/3.3.4@conan/stable
+    eigen/3.3.4@camposs/stable
 
     [generators]
     txt
@@ -41,15 +36,15 @@ The example below shows the commands used to publish to `conan-community` conan 
 
 The following command both runs all the steps of the conan file, and publishes the package to the local system cache.  This includes downloading dependencies from `build_requires` and `requires` , and then running the `build()` method.
 
-    $ conan create conan/stable
+    $ conan create camposs/stable
 
 ## Add Remote
 
-    $ conan remote add conan-community "https://api.bintray.com/conan/conan-community/conan"
+    $ conan remote add camp "https://conan.campar.in.tum.de"
 
 ## Upload
 
-    $ conan upload eigen/3.3.4@conan/stable --all -r conan-community
+    $ conan upload eigen/3.3.4@camposs/stable --all -r camp
 
 ## License
 
