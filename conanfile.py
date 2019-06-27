@@ -8,7 +8,7 @@ from glob import glob
 
 class EigenConan(ConanFile):
     name = "eigen"
-    version = "3.3.4"
+    version = "3.3.7"
     url = "https://github.com/ulricheck/conan-eigen"
     homepage = "http://eigen.tuxfamily.org"
     description = "Eigen is a C++ template library for linear algebra: matrices, vectors, \
