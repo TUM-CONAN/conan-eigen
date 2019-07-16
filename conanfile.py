@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, tools
+from conans import ConanFile, tools, CMake
 import os
 from glob import glob
 
@@ -22,17 +22,25 @@ class EigenConan(ConanFile):
 
     def source(self):
         tools.get("https://bitbucket.org/eigen/eigen/get/{0}.tar.gz".format(self.version))
-        os.rename(glob("eigen-eigen-*")[0], "sources")
+        os.rename(glob("eigen-eigen-*")[0], "source_subfolder")
 
-    def package(self):
-        self.copy("COPYING.*", dst="licenses", src="sources",
-                  ignore_case=True, keep_path=False)
-        self.copy(pattern="*", dst="include/Eigen", src="sources/Eigen")
 
-    def package_id(self):
-        self.info.header_only()
+    def build(self):
+        #Import common flags and defines
+        cmake = CMake(self)
+       
+        cmake.definitions["EIGEN_TEST_NOQT"] = "ON"
+        cmake.definitions["BUILD_TESTING"] = "OFF"
+        if not tools.os_info.is_windows:
+            cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = "ON"
+        cmake.configure(source_folder="source_subfolder", build_folder="build_subfolder")
+        cmake.build()
+        cmake.install()
 
     def package_info(self):
+        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.includedirs.append('include/eigen3')
+
         if self.options.EIGEN_USE_BLAS:
             self.cpp_info.defines.append("EIGEN_USE_BLAS")
 
@@ -41,3 +49,21 @@ class EigenConan(ConanFile):
 
         if self.options.EIGEN_USE_LAPACKE_STRICT:
             self.cpp_info.defines.append("EIGEN_USE_LAPACKE_STRICT")
+
+    # def package(self):
+    #     self.copy("COPYING.*", dst="licenses", src="sources",
+    #               ignore_case=True, keep_path=False)
+    #     self.copy(pattern="*", dst="include/Eigen", src="sources/Eigen")
+
+    # def package_id(self):
+    #     self.info.header_only()
+
+    # def package_info(self):
+    #     if self.options.EIGEN_USE_BLAS:
+    #         self.cpp_info.defines.append("EIGEN_USE_BLAS")
+
+    #     if self.options.EIGEN_USE_LAPACKE:
+    #         self.cpp_info.defines.append("EIGEN_USE_LAPACKE")
+
+    #     if self.options.EIGEN_USE_LAPACKE_STRICT:
+    #         self.cpp_info.defines.append("EIGEN_USE_LAPACKE_STRICT")
