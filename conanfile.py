@@ -15,6 +15,7 @@ class EigenConan(ConanFile):
                    numerical solvers, and related algorithms."
     license = "Mozilla Public License Version 2.0"
     no_copy_source = True
+    settings = "os", "arch", "compiler", "build_type"
     options = {"EIGEN_USE_BLAS": [True, False],
                "EIGEN_USE_LAPACKE": [True, False],
                "EIGEN_USE_LAPACKE_STRICT": [True, False]}
