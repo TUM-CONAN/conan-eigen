@@ -8,37 +8,25 @@ from glob import glob
 
 class EigenConan(ConanFile):
     name = "eigen"
-    version = "3.3.7"
+    version = "3.3.7.1"
     url = "https://github.com/ulricheck/conan-eigen"
     homepage = "http://eigen.tuxfamily.org"
     description = "Eigen is a C++ template library for linear algebra: matrices, vectors, \
                    numerical solvers, and related algorithms."
     license = "Mozilla Public License Version 2.0"
-    no_copy_source = False
-    settings = "os", "arch", "compiler", "build_type"
+    no_copy_source = True
     options = {"EIGEN_USE_BLAS": [True, False],
                "EIGEN_USE_LAPACKE": [True, False],
                "EIGEN_USE_LAPACKE_STRICT": [True, False]}
     default_options = "EIGEN_USE_BLAS=False", "EIGEN_USE_LAPACKE=False", "EIGEN_USE_LAPACKE_STRICT=False"
 
-    source_subfolder = "source_subfolder"
-
-    exports = [
-            "patches/Half.h.patch",
-        ]
-
-
     def source(self):
-        tools.get("https://bitbucket.org/eigen/eigen/get/{0}.tar.gz".format(self.version))
-        os.rename(glob("eigen-eigen-*")[0], self.source_subfolder)
+        git = tools.Git(folder="source_subfolder")
+        git.clone("https://gitlab.com/libeigen/eigen.git","master")
+        self.run("cd source_subfolder && git checkout 46f8a18567731925e06a7389a6c611e1dc420ea8")
 
 
     def build(self):
-        eigen_source_dir = os.path.join(
-
-            self.source_folder, self.source_subfolder)
-        tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
-
         #Import common flags and defines
         cmake = CMake(self)
        
