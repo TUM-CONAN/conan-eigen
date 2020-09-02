@@ -29,7 +29,7 @@ class EigenConan(ConanFile):
 
 
     def source(self):
-        tools.get("https://bitbucket.org/eigen/eigen/get/{0}.tar.gz".format(self.version))
+        tools.get("https://gitlab.com/libeigen/eigen/-/archive/{0}/eigen-{0}.tar.gz".format(self.version))
         os.rename(glob("eigen-eigen-*")[0], self.source_subfolder)
 
 
