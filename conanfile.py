@@ -30,7 +30,7 @@ class EigenConan(ConanFile):
 
     def source(self):
         tools.get("https://gitlab.com/libeigen/eigen/-/archive/{0}/eigen-{0}.tar.gz".format(self.version))
-        os.rename(glob("eigen-eigen-*")[0], self.source_subfolder)
+        os.rename(glob("eigen-{0}*".format(self.version))[0], self.source_subfolder)
 
 
     def build(self):
