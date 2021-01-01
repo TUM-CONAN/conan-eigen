@@ -9,14 +9,14 @@
 
 ### Basic setup
 
-    $ conan install eigen/3.3.7@camposs/stable
+    $ conan install eigen/3.3.9@camposs/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    eigen/3.3.7@camposs/stable
+    eigen/3.3.9@camposs/stable
 
     [generators]
     txt
@@ -44,7 +44,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload eigen/3.3.7@camposs/stable --all -r camp
+    $ conan upload eigen/3.3.9@camposs/stable --all -r camp
 
 ## License
 

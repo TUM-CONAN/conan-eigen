@@ -8,7 +8,7 @@ from glob import glob
 
 class EigenConan(ConanFile):
     name = "eigen"
-    version = "3.3.7"
+    version = "3.3.9"
     url = "https://github.com/ulricheck/conan-eigen"
     homepage = "http://eigen.tuxfamily.org"
     description = "Eigen is a C++ template library for linear algebra: matrices, vectors, \
@@ -24,7 +24,7 @@ class EigenConan(ConanFile):
     source_subfolder = "source_subfolder"
 
     exports = [
-            "patches/Half.h.patch",
+            # "patches/Half.h.patch",
         ]
 
 
@@ -34,10 +34,8 @@ class EigenConan(ConanFile):
 
 
     def build(self):
-        eigen_source_dir = os.path.join(
-
-            self.source_folder, self.source_subfolder)
-        tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
+        eigen_source_dir = os.path.join(self.source_folder, self.source_subfolder)
+        # tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
 
         #Import common flags and defines
         cmake = CMake(self)
