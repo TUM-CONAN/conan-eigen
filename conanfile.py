@@ -24,7 +24,7 @@ class EigenConan(ConanFile):
     source_subfolder = "source_subfolder"
 
     exports = [
-            # "patches/Half.h.patch",
+            "patches/Half.h.patch",
         ]
 
 
@@ -35,7 +35,7 @@ class EigenConan(ConanFile):
 
     def build(self):
         eigen_source_dir = os.path.join(self.source_folder, self.source_subfolder)
-        # tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
+        tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
 
         #Import common flags and defines
         cmake = CMake(self)

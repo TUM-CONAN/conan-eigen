@@ -2,7 +2,7 @@ diff --git a/Eigen/src/Core/arch/CUDA/Half.h b/Eigen/src/Core/arch/CUDA/Half.h
 index 755e6209d..42a3582a2 100644
 --- a/Eigen/src/Core/arch/CUDA/Half.h
 +++ b/Eigen/src/Core/arch/CUDA/Half.h
-@@ -209,7 +209,11 @@ namespace half_impl {
+@@ -210,7 +210,11 @@ namespace half_impl {
  // conversion steps back and forth.
  
  EIGEN_STRONG_INLINE __device__ half operator + (const half& a, const half& b) {
