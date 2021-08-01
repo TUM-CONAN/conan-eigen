@@ -1,0 +1,13 @@
+diff --git a/Eigen/src/Core/util/Macros.h b/Eigen/src/Core/util/Macros.h
+index 755e6209d..42a3582a2 100644
+--- a/Eigen/src/Core/util/Macros.h
++++ b/Eigen/src/Core/util/Macros.h
+@@ -829,7 +829,7 @@ namespace Eigen {
+ // just an empty macro !
+ #define EIGEN_EMPTY
+ 
+-#if EIGEN_COMP_MSVC_STRICT && (EIGEN_COMP_MSVC < 1900 || EIGEN_CUDACC_VER>0)
++#if EIGEN_COMP_MSVC_STRICT && (EIGEN_COMP_MSVC < 1900 || (EIGEN_CUDACC_VER != 0 && EIGEN_CUDACC_VER<11000))
+   // for older MSVC versions, as well as 1900 && CUDA 8, using the base operator is sufficient (cf Bugs 1000, 1324)
+   #define EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived) \
+     using Base::operator =;
