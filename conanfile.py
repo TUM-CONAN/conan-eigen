@@ -8,8 +8,8 @@ from glob import glob
 
 class EigenConan(ConanFile):
     name = "eigen"
-    upstream_version = "3.3.9"
-    package_revision = "-r1"
+    upstream_version = "3.4.0"
+    package_revision = ""
     version = "{0}{1}".format(upstream_version, package_revision)
     url = "https://github.com/ulricheck/conan-eigen"
     homepage = "http://eigen.tuxfamily.org"
@@ -26,11 +26,11 @@ class EigenConan(ConanFile):
     source_subfolder = "source_subfolder"
 
     exports = [
-            "patches/Half.h.patch",
-            "patches/ProductEvaluators.h.patch",
-            "patches/MatrixBase.h.patch",
-            "patches/Macros.h.patch",
-            "patches/GenericPacketMath.h.patch"
+            #"patches/Half.h.patch",
+            #"patches/ProductEvaluators.h.patch",
+            #"patches/MatrixBase.h.patch",
+            #"patches/Macros.h.patch",
+            #"patches/GenericPacketMath.h.patch"
         ]
 
 
@@ -41,11 +41,11 @@ class EigenConan(ConanFile):
 
     def build(self):
         eigen_source_dir = os.path.join(self.source_folder, self.source_subfolder)
-        tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
-        tools.patch(eigen_source_dir, "patches/ProductEvaluators.h.patch", strip=1)
-        tools.patch(eigen_source_dir, "patches/MatrixBase.h.patch", strip=1)
-        tools.patch(eigen_source_dir, "patches/Macros.h.patch", strip=1)
-        tools.patch(eigen_source_dir, "patches/GenericPacketMath.h.patch", strip=1)
+        #tools.patch(eigen_source_dir, "patches/Half.h.patch", strip=1)
+        #tools.patch(eigen_source_dir, "patches/ProductEvaluators.h.patch", strip=1)
+        #tools.patch(eigen_source_dir, "patches/MatrixBase.h.patch", strip=1)
+        #tools.patch(eigen_source_dir, "patches/Macros.h.patch", strip=1)
+        #tools.patch(eigen_source_dir, "patches/GenericPacketMath.h.patch", strip=1)
 
         #Import common flags and defines
         cmake = CMake(self)
